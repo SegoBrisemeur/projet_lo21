@@ -1,5 +1,5 @@
 #include "etat.h"
-#include "automate.h"
+#include "autocell.h"
 
 Etat::Etat(unsigned int l, unsigned int c): nbColonne(c), nbLigne(l){
 

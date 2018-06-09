@@ -2,6 +2,7 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="automate2D.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="23" topLine="0" />
@@ -10,10 +11,26 @@
 	<File name="etat.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="692" topLine="0" />
+=======
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="527" topLine="4" />
 		</Cursor>
 	</File>
-	<File name="autocell.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="autocell.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+			<Cursor1 position="891" topLine="38" />
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
+		</Cursor>
+		<Folding>
+			<Collapse line="10" />
+			<Collapse line="22" />
+			<Collapse line="51" />
+		</Folding>
+	</File>
+	<File name="etat.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="46" topLine="0" />
 		</Cursor>
 	</File>
@@ -25,8 +42,36 @@
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="23" topLine="0" />
+=======
+			<Cursor1 position="541" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="simulateur.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1897" topLine="69" />
+		</Cursor>
+	</File>
+	<File name="autocell.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1625" topLine="15" />
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="16" />
+			<Collapse line="37" />
+			<Collapse line="59" />
+			<Collapse line="65" />
+			<Collapse line="97" />
+			<Collapse line="108" />
+			<Collapse line="135" />
+			<Collapse line="153" />
+			<Collapse line="162" />
+			<Collapse line="171" />
+			<Collapse line="180" />
+		</Folding>
+	</File>
+<<<<<<< HEAD
 	<File name="automate1D.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="967" topLine="0" />
@@ -35,6 +80,16 @@
 	<File name="simulateur.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="60" topLine="0" />
+=======
+	<File name="simulateur.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="72" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="etat.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="239" topLine="0" />
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -1,13 +1,21 @@
 #include <iostream>
 //#include "autocell.h"
 //#include "automate1D.h"
+<<<<<<< HEAD
 #include "automate.h"
+=======
+#include "simulateur.h"
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 
 using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
     /*Automate2D a2(2,3,2,4);
+=======
+    const Automate2D& a2=AutomateManager::getInstance().getAutomate2D(2,3,2,4);
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
     Etat e2(7,4);
     e2.setCellule(4,2,true);
     e2.setCellule(3,1,true);
@@ -15,13 +23,17 @@ int main()
     e2.setCellule(1,0,true);
     e2.setCellule(6,0,true);
 
-    Simulateur s(a2,e2);
+    Simulateur s(a2,e2,10);
+    s.run(15);
+    for(Simulateur::ConstIterator it=s.getConstIterator(); !it.isDone(); ++it)
+        std::cout<<*it<<"\n";
 
-    for(unsigned int i=0;i<10;i++){
+
+    /*for(unsigned int i=0;i<10;i++){
             cout<<s.dernier()<<"\n";
             s.next();}
 
-    try {
+   /* try {
     Automate1D a1(30);
 
     Etat e1(1,10);

@@ -74,9 +74,15 @@ class AutomateManager{ //Le manager gère un ensemble d'automate qui peut être 1D
 
     static AutomateManager* instance;
     Automate1D* automates1D[256];
+<<<<<<< HEAD
     Automate2D* automates2D[50]; //on ne créé pas un tableau de taille maximale car pas optimal
     unsigned int tailleTab2D=50;
     unsigned int nb2DStocke=0; //le rang du dernier automate 2D rentré
+=======
+    Automate2D** automates2D; //on ne créé pas un tableau de taille maximale car pas optimal
+    unsigned int tailleTab2D=50;
+    unsigned int nombre2DStockes=0; //le rang du dernier automate 2D rentré
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 
     AutomateManager();
     ~AutomateManager();
@@ -99,9 +105,15 @@ public:
     }
     const Automate1D& getAutomate1D(short unsigned int num);
     const Automate1D& getAutomate1D(const string& num);
+<<<<<<< HEAD
     const Automate2D& getAutomate2D(const unsigned int miniV, unsigned int maxiV, unsigned int miniM, unsigned int maxiM);
     unsigned int getDim2D()const {return tailleTab2D;}
     unsigned int getRang2D()const {return nb2DStocke;}
+=======
+    const Automate2D& getAutomate2D(unsigned int miniV, unsigned int maxiV, unsigned int miniM, unsigned int maxiM);
+    unsigned int getDim2D()const {return tailleTab2D;}
+    unsigned int getnombre2DStockes()const {return nombre2DStockes;}
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
     int indice_automate(unsigned int a, unsigned int b, unsigned int c, unsigned int d) const; //retourne l'indice dans le tableau ou -1 si jamais rentré
 
 };

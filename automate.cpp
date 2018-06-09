@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "automate.h"
+=======
+#include "autocell.h"
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 
 using namespace std;
 
@@ -142,12 +146,21 @@ std::ostream& operator<<(std::ostream& f, const Automate2D& A) {
 
 
 
+<<<<<<< HEAD
 
 AutomateManager::AutomateManager() : tailleTab2D(50), rangDernier(0){
 
     for(unsigned int i=0; i<256; i++)
         automates1D[i]=nullptr;
     for(unsigned int i=0; i<50; i++)
+=======
+AutomateManager::AutomateManager() : tailleTab2D(50), nombre2DStockes(0){
+
+    for(unsigned int i=0; i<256; i++)
+        automates1D[i]=nullptr;
+    automates2D = new Automate2D*[tailleTab2D];
+    for(unsigned int i=0; i<tailleTab2D; i++)
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
         automates2D[i]=nullptr;
 }
 
@@ -185,7 +198,11 @@ const Automate1D& AutomateManager::getAutomate1D(const string& num){
 
 int AutomateManager::indice_automate(unsigned int a, unsigned int b, unsigned int c, unsigned int d) const{
 
+<<<<<<< HEAD
     for(unsigned int i=0;i<getRang2D();i++){ //on inspecte tout les éléments jusqu'au dernier
+=======
+    for(unsigned int i=0;i<getnombre2DStockes();i++){ //on inspecte tout les éléments jusqu'au dernier
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 
         if(automates2D[i]->getMinV()==a && automates2D[i]->getMaxV()==b && automates2D[i]->getMinM()==c && automates2D[i]->getMaxM()==d)
             return i;
@@ -200,21 +217,36 @@ const Automate2D& AutomateManager::getAutomate2D(unsigned int miniV, unsigned in
 
     if(indice==-1){ //l'automate n'a jamais été rentré dans le tableau automates2D[]
 
+<<<<<<< HEAD
         if(rangDernier==tailleTab2D - 1){ //le tableau est complet, il faut l'agrandir
 
             Automate2D* newtab=new Automate2D[tailleTab2D + 10];
+=======
+        if(nombre2DStockes==tailleTab2D){ //le tableau est complet, il faut l'agrandir
+
+            Automate2D** newtab=new Automate2D*[tailleTab2D + 10];
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 
             for(unsigned int i=0;i<tailleTab2D;i++)
                 newtab[i]=automates2D[i];
 
+<<<<<<< HEAD
             Automate2D* old=automates2D;
+=======
+            Automate2D** old=automates2D;
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
             automates2D = newtab;
             tailleTab2D+=10;
             delete[] old;
         }
 
+<<<<<<< HEAD
         automates2D[rangDernier++]=new Automate2D(miniV, maxiV, miniM, maxiM);
         return *automates1D[rangDernier];
+=======
+        automates2D[nombre2DStockes]=new Automate2D(miniV, maxiV, miniM, maxiM);
+        return *automates2D[nombre2DStockes++];
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
     }
     return *automates2D[indice];
 }

@@ -33,6 +33,7 @@
 1528549989 source:c:\users\ségolène.sÉgolÈne\projet_lo21\main.cpp
 	<iostream>
 	"autocell.h"
+<<<<<<< HEAD
 
 1528367604 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.cpp
 	"automate1D.h"
@@ -51,6 +52,61 @@
 	<iostream>
 
 1528549947 source:c:\users\ségolène.sÉgolÈne\projet_lo21\etat.cpp
+=======
+
+1528367604 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.cpp
+	"automate1D.h"
+
+1528478200 c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.h
+	"autocell.h"
+
+1528367604 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.cpp
+	"automate2D.h"
+
+1528478487 c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.h
+	"automate1D.h"
+
+1528549930 c:\users\ségolène.sÉgolÈne\projet_lo21\etat.h
+	<string>
+	<iostream>
+
+1528549947 source:c:\users\ségolène.sÉgolÈne\projet_lo21\etat.cpp
+	"etat.h"
+	"autocell.h"
+
+1528544190 source:c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.cpp
+	"simulateur.h"
+
+1528552977 c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.h
+	"etat.h"
+	"autocell.h"
+
+1528555253 source:d:\utc\gi02\lo21\projet\projet_lo21\autocell.cpp
+	"autocell.h"
+
+1528555601 d:\utc\gi02\lo21\projet\projet_lo21\autocell.h
+	<string>
+	<iostream>
+	<typeinfo>
+	"etat.h"
+
+1528520876 d:\utc\gi02\lo21\projet\projet_lo21\etat.h
+	<string>
+	<iostream>
+
+1528520876 source:d:\utc\gi02\lo21\projet\projet_lo21\main.cpp
+	<iostream>
+	"autocell.h"
+
+1528520876 source:d:\utc\gi02\lo21\projet\projet_lo21\etat.cpp
+	"etat.h"
+	"autocell.h"
+
+1528520876 source:d:\utc\gi02\lo21\projet\projet_lo21\simulateur.cpp
+	"simulateur.h"
+
+1528520876 d:\utc\gi02\lo21\projet\projet_lo21\simulateur.h
+>>>>>>> bcf17dd9466679f3c061dc42785758bb470fb9fe
 	"etat.h"
 	"autocell.h"
 
