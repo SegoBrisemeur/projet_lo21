@@ -2,7 +2,7 @@
 #define SIMULATEUR_H_INCLUDED
 
 #include "etat.h"
-#include "autocell.h"
+#include "automate.h"
 
 using namespace std;
 

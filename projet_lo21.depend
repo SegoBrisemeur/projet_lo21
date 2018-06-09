@@ -57,7 +57,13 @@
 1528544190 source:c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.cpp
 	"simulateur.h"
 
-1528552977 c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.h
+1528555201 c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.h
 	"etat.h"
-	"autocell.h"
+	"automate.h"
+
+1528555215 c:\users\ségolène.sÉgolÈne\projet_lo21\automate.h
+	<string>
+	<iostream>
+	<typeinfo>
+	"etat.h"
 

@@ -1,4 +1,4 @@
-#include "autocell.h"
+#include "automate.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #include <iostream>
 //#include "autocell.h"
 //#include "automate1D.h"
-#include "autocell.h"
+#include "automate.h"
 
 using namespace std;
 
