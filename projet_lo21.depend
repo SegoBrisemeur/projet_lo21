@@ -21,29 +21,43 @@
 1528059589 source:d:\utc\gi02\lo21\projet\projet_lo21\projet_lo21\autocell.cpp
 	"autocell.h"
 
-1528366565 source:c:\users\ségolène.sÉgolÈne\projet_lo21\autocell.cpp
+1528549877 source:c:\users\ségolène.sÉgolÈne\projet_lo21\autocell.cpp
 	"autocell.h"
 
-1528367604 c:\users\ségolène.sÉgolÈne\projet_lo21\autocell.h
+1528549877 c:\users\ségolène.sÉgolÈne\projet_lo21\autocell.h
 	<string>
 	<iostream>
 	<typeinfo>
+	"etat.h"
 
-1528367417 source:c:\users\ségolène.sÉgolÈne\projet_lo21\main.cpp
+1528549989 source:c:\users\ségolène.sÉgolÈne\projet_lo21\main.cpp
 	<iostream>
 	"autocell.h"
-	"automate1D.h"
-	"automate2D.h"
 
-1528367340 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.cpp
+1528367604 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.cpp
 	"automate1D.h"
 
-1528365532 c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.h
+1528478200 c:\users\ségolène.sÉgolÈne\projet_lo21\automate1d.h
 	"autocell.h"
 
-1528319393 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.cpp
+1528367604 source:c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.cpp
 	"automate2D.h"
 
-1528316059 c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.h
+1528478487 c:\users\ségolène.sÉgolÈne\projet_lo21\automate2d.h
+	"automate1D.h"
+
+1528549930 c:\users\ségolène.sÉgolÈne\projet_lo21\etat.h
+	<string>
+	<iostream>
+
+1528549947 source:c:\users\ségolène.sÉgolÈne\projet_lo21\etat.cpp
+	"etat.h"
+	"autocell.h"
+
+1528544190 source:c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.cpp
+	"simulateur.h"
+
+1528552977 c:\users\ségolène.sÉgolÈne\projet_lo21\simulateur.h
+	"etat.h"
 	"autocell.h"
 

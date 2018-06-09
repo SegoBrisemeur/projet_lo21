@@ -36,10 +36,10 @@
 		<Unit filename="autocell.cpp" />
 		<Unit filename="autocell.h" />
 		<Unit filename="automate1D.cpp" />
-		<Unit filename="automate1D.h" />
 		<Unit filename="automate2D.cpp" />
-		<Unit filename="automate2D.h" />
+		<Unit filename="etat.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="simulateur.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

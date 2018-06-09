@@ -31,161 +31,190 @@ std::string NumToNumBit(short unsigned int num) {
 	return numeroBit;
 }
 
-Etat::Etat(unsigned int l, unsigned int c): nbColonne(c), nbLigne(l){
+Automate1D::Automate1D(unsigned short int num): numero(num),numeroBit(NumToNumBit(num)){}
 
-    if (c==0 || l==0)
-        throw AutomateException("Mauvaise dimension de la matrice");
+Automate1D::Automate1D(const std::string& num) : numero(NumBitToNum(num)),numeroBit(num){}
 
-    else{
-        valeurs = new bool*[nbLigne];
-        for (unsigned int i=0; i<nbLigne; i++){
-            valeurs[i] = new bool[nbColonne];
-            for(unsigned int j=0; j<nbColonne; ++j)
-                valeurs[i][j]=false;
-                }
-    }
+void Automate1D::AppliquerTransition(const Etat& dep, Etat& dest) const {
+
+    if (dep.getLongueur() > 1) //on vérifie que l'automate est 1D
+        throw AutomateException("L'automate n'est pas 1D");
+
+	if (dep.getLargeur() != dest.getLargeur())
+        dest = dep;
+
+	for (unsigned int i = 0; i < dep.getLargeur(); i++) {
+		unsigned short int conf=0;
+
+		if (i > 0) //quand il y a un voisin à gauche
+            conf+=dep.getCellule(0, i - 1) * 4;
+
+		conf+=dep.getCellule(0,i)*2; //cellule elle même
+
+		if (i < dep.getLongueur()-1) //quand il y a un voisin à droite
+            conf+=dep.getCellule(0, i + 1);
+		dest.setCellule(0, i, numeroBit[7-conf]-'0');
+	}
 }
 
-void Etat::setCellule(unsigned int i, unsigned int j, bool val) {
-	if (i >= nbLigne || j>=nbColonne)
-        throw AutomateException("Cellule inexistante dimension trop élevée");
-	valeurs[i][j] = val;
+std::ostream& operator<<(std::ostream& f, const Automate1D& A) {
+	f << A.getNumero() << " : " << A.getNumeroBit() << "\n";
+	return f;
 }
 
-bool Etat::getCellule(unsigned int i, unsigned int j) const{
-    if (i>=nbLigne|| j>=nbColonne)
-        throw AutomateException("Cellule inexistante");
-    return valeurs[i][j];
-}
 
-Etat::~Etat(){
+unsigned int Automate2D::CountVoisin(unsigned int li, unsigned int co, const Etat& e)const{
 
-for(unsigned int i=0; i<nbLigne;++i)
-        delete valeurs[i];
-    delete[] valeurs;
-}
+    unsigned int nb=0;
+    unsigned int limH, limB, limG, limD;
 
-Etat::Etat(const Etat& e): nbLigne(e.nbLigne), nbColonne(e.nbColonne), valeurs(nullptr){
+    if(li==0)
+        limH=li;
+    else limH=li-1;
 
-    if(nbLigne<=0 || nbColonne<=0)
-        throw AutomateException("Mauvaise dimension");
+    if(li==e.getLongueur()-1)
+        limB=li;
+    else limB=li+1;
 
-    else {
-        valeurs = new bool*[nbLigne];
-        for(unsigned int i=0; i<nbLigne; ++i){
+    if(co==0)
+        limG=co;
+    else limG=co-1;
 
-            valeurs[i]=new bool[nbColonne];
-            for(unsigned int j=0; j<nbColonne; ++j){
-                valeurs[i][j]=e.valeurs[i][j];
-            }
+    if(co==e.getLargeur()-1)
+        limD=co;
+    else limD=co+1;
+
+    for(unsigned int i=limH; i<=limB; i++){
+        for(unsigned int j=limG; j<=limD; j++){
+                if(e.getCellule(i,j))
+                    nb+=1;
         }
     }
-
+    if(e.getCellule(li, co))
+        nb-=1;
+    return nb;
 }
 
-Etat& Etat::operator=(const Etat& e){
-    if(this != &e){ //auto-affectation impossible
-        if(nbLigne!=e.nbLigne){ //on refait tout le tableau car pas bon nombre de ligne dès le début
+Automate2D::Automate2D(unsigned int minV, unsigned int maxV, unsigned int minM, unsigned int maxM){ //n est le nb d'état attribut de la classe mère
 
-            for(unsigned int i=0;i<nbLigne;++i)
-                delete valeurs[i]; //on supprime chaque ligne
-            delete[] valeurs;
+    if (minV>maxV || minM>maxV)
+        throw AutomateException("minimum et maximum invalide");
+    nbMinVivant=minV;
+    nbMaxVivant=maxV;
+    nbMinMort=minM;
+    nbMaxMort=maxM;
+}
 
-            nbLigne=e.nbLigne;
-            valeurs=new bool*[nbLigne];
-            nbColonne=e.nbColonne;
 
-            for(unsigned int i=0; i<nbLigne;++i)
-                valeurs[i]=new bool[nbColonne];
+void Automate2D::AppliquerTransition(const Etat& dep, Etat& dest) const{
+
+    if (dep.getLongueur() < 2) //on vérifie que l'automate est 2D
+        throw AutomateException("L'automate n'est pas 2D");
+
+    if(dest.getLongueur()!=dep.getLongueur()||dest.getLargeur()!=dep.getLargeur()){
+        dest=dep;
+    }
+
+    for(unsigned int i=0; i<dep.getLongueur(); i++){
+        for(unsigned int j=0; j<dep.getLargeur(); j++){
+            unsigned int nbVoisin=CountVoisin(i,j,dep);
+
+            if (dep.getCellule(i,j)){ //cellule vivante
+                if(nbVoisin<nbMinVivant || nbVoisin>nbMaxVivant)
+                    dest.setCellule(i,j,false); //si trop ou pas assez de voisin alors la cellule meurt
             }
 
-        else if(nbColonne!=e.nbColonne){
+            else {
 
-            nbColonne=e.nbColonne;
-            for(unsigned int i=0;i<nbLigne;++i){
-                delete valeurs[i];
-                valeurs[i]=new bool[nbColonne];
+                if(nbVoisin>=nbMinMort && nbVoisin<=nbMaxMort)
+                    dest.setCellule(i,j,true); //si suffisament de cellule alors la cellule nait*/
+            }
             }
         }
+}
 
-        for (unsigned int i;i<nbLigne;i++){
-            for(unsigned int j;j<nbColonne;++j)
-                valeurs[i][j]=e.valeurs[i][j];
+std::ostream& operator<<(std::ostream& f, const Automate2D& A) {
+	f <<"Regle cellule vivante :"<<endl<<"Nombre minimum = " << A.getMinV() <<endl<<"Nombre maximum"<<A.getMaxV()
+	<<"Regle cellule morte :"<<endl<<"Nombre minimum = " << A.getMinM() <<endl<<"Nombre maximum"<<A.getMaxM();
+
+	return f;
+}
+
+
+
+
+AutomateManager::AutomateManager() : tailleTab2D(50), rangDernier(0){
+
+    for(unsigned int i=0; i<256; i++)
+        automates1D[i]=nullptr;
+    for(unsigned int i=0; i<50; i++)
+        automates2D[i]=nullptr;
+}
+
+AutomateManager::~AutomateManager(){
+
+    for(unsigned int i=0; i<256; i++)
+        delete automates1D[i];
+
+    for(unsigned int i=0; i<tailleTab2D; i++)
+        delete automates2D[i];
+}
+
+AutomateManager& AutomateManager::getInstance(){
+
+    if(handler.instance==nullptr)
+        handler.instance=new AutomateManager;
+    return *handler.instance;
+}
+
+AutomateManager::Handler AutomateManager::handler = AutomateManager::Handler();
+
+const Automate1D& AutomateManager::getAutomate1D(short unsigned int num){
+
+    if(num>255)
+        throw AutomateException("Automate inexistant");
+    if (automates1D[num]==nullptr)
+        automates1D[num]=new Automate1D(num);
+    return *automates1D[num];
+}
+
+const Automate1D& AutomateManager::getAutomate1D(const string& num){
+
+    return getAutomate1D(NumBitToNum(num));
+}
+
+int AutomateManager::indice_automate(unsigned int a, unsigned int b, unsigned int c, unsigned int d) const{
+
+    for(unsigned int i=0;i<getRang2D();i++){ //on inspecte tout les éléments jusqu'au dernier
+
+        if(automates2D[i]->getMinV()==a && automates2D[i]->getMaxV()==b && automates2D[i]->getMinM()==c && automates2D[i]->getMaxM()==d)
+            return i;
+    }
+
+    return -1; //l'automate n'existe pas dans le tableau
+}
+
+const Automate2D& AutomateManager::getAutomate2D(unsigned int miniV, unsigned int maxiV, unsigned int miniM, unsigned int maxiM){
+
+    int indice=indice_automate(miniV, maxiV, miniM, maxiM);
+
+    if(indice==-1){ //l'automate n'a jamais été rentré dans le tableau automates2D[]
+
+        if(rangDernier==tailleTab2D - 1){ //le tableau est complet, il faut l'agrandir
+
+            Automate2D* newtab=new Automate2D[tailleTab2D + 10];
+
+            for(unsigned int i=0;i<tailleTab2D;i++)
+                newtab[i]=automates2D[i];
+
+            Automate2D* old=automates2D;
+            automates2D = newtab;
+            tailleTab2D+=10;
+            delete[] old;
         }
+
+        automates2D[rangDernier++]=new Automate2D(miniV, maxiV, miniM, maxiM);
+        return *automates1D[rangDernier];
     }
-
-    return *this;
-    }
-
-std::ostream& operator<<(std::ostream& f, const Etat& e){
-
-    for (unsigned int i=0; i<e.getLongueur(); ++i){
-        for (unsigned int j=0; j<e.getLargeur(); ++j)
-            f<<e.getCellule(i,j);
-        f<<endl;
-    }
-    return f;
-
+    return *automates2D[indice];
 }
-
-void Simulateur::setEtatDepart(const Etat& e){
-    if((typeid(automate).name()=="Automate1D" && e.getLongueur()!=1) || (typeid(automate).name()=="Automate2D" && e.getLongueur()==1))
-        throw AutomateException("erreur : dimensions de l'automate et de l'etat incompatibles");
-    depart = &e;
-    if(etats[0]==nullptr)
-        etats[0]=new Etat(e);
-    else *etats[0]=e;
-    reset();
-}
-
-Simulateur::Simulateur(const Automate& a, unsigned int buf): automate(a), depart(nullptr), etats(nullptr), nbMaxEtats(buf),rang(0) {
-    etats = new Etat*[nbMaxEtats];
-	for (unsigned int i = 0; i < nbMaxEtats; i++)
-        etats[i] = nullptr;
-}
-
-Simulateur::Simulateur(const Automate& a, const Etat& dep, unsigned int buffer) : automate(a), etats(nullptr), nbMaxEtats(buffer), rang(0){
-    etats = new Etat*[nbMaxEtats];
-	for (unsigned int i = 0; i < nbMaxEtats; i++)
-        etats[i] = nullptr;
-	setEtatDepart(dep);
-}
-
-
-
-void Simulateur::build(unsigned int cellule) {
-	if (cellule >= nbMaxEtats)
-        throw AutomateException("erreur taille buffer");
-	if (etats[cellule] == nullptr)
-        etats[cellule] = new Etat;
-}
-
-void Simulateur::reset(){
-    if (depart==nullptr) throw AutomateException("etat depart indefini");
-	build(0); *etats[0] = *depart;
-	rang = 0;
-}
-
-
-void Simulateur::next() {
-	if (depart == nullptr)
-        throw AutomateException("etat depart indefini");
-	rang++;
-	build(rang%nbMaxEtats);
-	automate.AppliquerTransition(*etats[(rang - 1) % nbMaxEtats], *etats[rang%nbMaxEtats]);
-}
-
-void Simulateur::run(unsigned int nb_steps) {
-	for (unsigned int i = 0; i < nb_steps; i++) next();
-}
-
-const Etat& Simulateur::dernier() const {
-	return *etats[rang%nbMaxEtats];
-}
-
-Simulateur::~Simulateur() {
-	for (unsigned int i = 0; i < nbMaxEtats; i++) delete etats[i];
-	delete[] etats;
-}
-
-

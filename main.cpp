@@ -1,13 +1,13 @@
 #include <iostream>
+//#include "autocell.h"
+//#include "automate1D.h"
 #include "autocell.h"
-#include "automate1D.h"
-#include "automate2D.h"
 
 using namespace std;
 
 int main()
 {
-    Automate2D a2(2,3,2,4);
+    /*Automate2D a2(2,3,2,4);
     Etat e2(7,4);
     e2.setCellule(4,2,true);
     e2.setCellule(3,1,true);
