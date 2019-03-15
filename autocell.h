@@ -18,6 +18,9 @@
 #include "automate.h"
 #include "xml_dom.h"
 #include "autocellmere.h"
+k:khqglkushfd;gkhsef:jsfd
+dsfshdf;jbhsfgb
+skhj;sghskf
 /*!
  * \brief The AutoCell class permet de créer des automates 1D
  */
